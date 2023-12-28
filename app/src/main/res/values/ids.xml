@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="dashboardTitle" type="id" />
+    <item name="editTextSearch" type="id" />
+    <item name="userInfoSection" type="id" />
+    <item name="tasksSection" type="id" />
+    <item name="editTextTaskTitle" type="id" />
+    <item name="taskDescriptionEditText" type="id" />
+    <item name="editTextTaskDescription" type="id" />
+    <item name="btnCreateTask" type="id" />
+    <item name="recyclerViewTasks" type="id" />
+    <item name="editTextCalculatePlan" type="id" />
+    <item name="calculatePlanSection" type="id" />
+    <item name="btnMakeOffer" type="id" />
+    <item name="btnBackToHome" type="id" />
+    <item name="btnClearTasks" type="id" />
+    <item name="btnNavigateToTaskPage" type="id" />
+    <item name="btnSearch" type="id" />
+    <item name="textViewCustomerName" type="id" />
+    <item name="textViewCalculatePlan" type="id" />
+</resources>

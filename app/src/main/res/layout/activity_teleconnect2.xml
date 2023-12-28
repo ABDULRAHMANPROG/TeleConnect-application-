@@ -1,0 +1,173 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/telep">
+
+
+
+
+<Button
+    android:id="@+id/btnLogout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="21dp"
+    android:layout_marginBottom="16dp"
+    android:text="Logout" />
+
+<TextView
+    android:id="@+id/dashboardTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:text="@string/dashboard"
+    android:textSize="24sp"
+    android:textStyle="bold" />
+
+<!-- Search Field -->
+<EditText
+    android:id="@+id/editTextSearch"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/dashboardTitle"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="9dp"
+    android:layout_marginEnd="16dp"
+    android:autofillHints=""
+    android:background="@color/white"
+    android:hint="@string/search"
+    android:padding="12dp"
+    android:textColorHint="#757575"
+    tools:ignore="VisualLintTextFieldSize" />
+
+<!-- User Information Section -->
+<LinearLayout
+    android:id="@+id/userInfoSection"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/editTextSearch"
+    android:layout_marginTop="10dp"
+    android:background="@color/light_deepgry"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Display user-related information here -->
+    <!-- User information TextViews, EditTexts, -->
+    <TextView
+        android:id="@+id/textViewCustomerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Customer Name"
+        android:padding="4dp"
+        android:textColor="#FFCA28"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewCustomerAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Customer Address"
+        android:padding="4dp"
+        android:textColor="#FFCA28"
+        android:textSize="18sp" />
+
+
+</LinearLayout>
+
+<!-- Calculate Plan Input -->
+<EditText
+    android:id="@+id/editTextCalculatePlan"
+    android:layout_width="298dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/userInfoSection"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:autofillHints=""
+    android:hint="@string/calculate_plan_input"
+    android:padding="12dp"
+    tools:ignore="NotSibling,UnknownId,VisualLintTextFieldSize" />
+
+<!-- Calculate Plan Section -->
+<LinearLayout
+    android:id="@+id/calculatePlanSection"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/light_deepgry"
+    android:layout_below="@id/editTextCalculatePlan"
+    android:layout_marginTop="16dp">
+
+    <!-- Display calculation-related information here -->
+    <!-- Calculation-related TextViews -->
+    <TextView
+        android:id="@+id/textViewCalculatePlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Plan"
+        android:padding="4dp"
+        android:textSize="18sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textViewCustomerBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray"
+        android:hint="Bill"
+        android:padding="4dp"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/textViewShowPlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Plans Offers"
+        android:layout_gravity="center"
+        android:padding="4dp"
+        android:textColor="#FFCA28"
+        android:textSize="18sp" />
+</LinearLayout>
+
+
+<!-- Search Button -->
+<Button
+    android:id="@+id/btnMakeOffer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/calculatePlanSection"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="63dp"
+    android:text="@string/make_offer" />
+
+<Button
+    android:id="@+id/btnNavigateToTaskPage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/btnMakeOffer"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="131dp"
+    android:layout_marginTop="35dp"
+    android:layout_marginEnd="128dp"
+    android:text="Go to Task Page"
+    tools:ignore="VisualLintButtonSize" />
+
+<Button
+    android:id="@+id/btnSearch"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/userInfoSection"
+    android:layout_alignParentEnd="true"
+    android:text="Search"
+    android:layout_marginTop="16dp" />
+
+
+</RelativeLayout>
