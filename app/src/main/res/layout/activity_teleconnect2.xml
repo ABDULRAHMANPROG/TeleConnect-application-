@@ -153,6 +153,7 @@ android:background="@drawable/telep">
     android:layout_height="wrap_content"
     android:layout_below="@id/btnMakeOffer"
     android:layout_alignParentStart="true"
+    android:background="@color/light_deepgry"
     android:layout_alignParentEnd="true"
     android:layout_marginStart="131dp"
     android:layout_marginTop="35dp"

@@ -1,14 +1,14 @@
 package com.example.teleconnect2;
 
 
-// Move the Task class outside of the TaskPage class
+
 public class Task {
     private String taskId;
     private String title;
     private String description;
 
     public Task() {
-        // Default constructor required for Firebase to map data
+
     }
 
     public Task(String taskId, String title, String description) {
