@@ -18,4 +18,6 @@
     <string name="login">Login</string>
     <string name="emaill">Email</string>
     <string name="clear_task" />
+    <string name="employee_task_create">Employee Task Create</string>
+    <string name="task_information">Task Information</string>
 </resources>

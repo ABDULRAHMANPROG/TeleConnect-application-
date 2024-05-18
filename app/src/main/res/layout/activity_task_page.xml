@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/telep"
+    android:background="@color/backgroundColor"
     android:padding="16dp">
 
     <TextView
@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Task Create"
+        android:text="Employee Task Create"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/textColor" />
 
     <!-- Task Title Input -->
     <EditText
@@ -22,6 +23,9 @@
         android:layout_height="wrap_content"
         android:hint="Task Title"
         android:padding="12dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/hintTextColor"
         tools:ignore="VisualLintTextFieldSize" />
 
     <!-- Task Description Input -->
@@ -31,65 +35,73 @@
         android:layout_height="wrap_content"
         android:hint="Task Description"
         android:padding="12dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/hintTextColor"
         tools:ignore="VisualLintTextFieldSize" />
 
     <!-- Create Task Button -->
     <Button
         android:id="@+id/btnCreateTask"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_task"
-        android:layout_marginTop="16dp" />
-
+        android:text="Create Task"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/buttonTextColor" />
 
     <!-- Spinner to display tasks -->
-
     <Spinner
         android:id="@+id/spinnerTasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:background="@drawable/rounded_spinner"
+        android:textColor="@color/textColor" />
 
     <TextView
         android:id="@+id/taskInfoTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="Task Information"
         android:textSize="16sp"
-        android:textColor="#333333"
-        android:background="#FFFFCC"
+        android:textColor="@color/textColor"
+        android:background="@drawable/rounded_textview"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:elevation="4dp"
         android:gravity="center"
         android:textStyle="bold" />
 
-
     <Button
         android:id="@+id/btnUpdateTask"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/update_task"
-        android:layout_marginTop="16dp" />
+        android:text="Update Task"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/buttonTextColor" />
 
     <!-- Clear Tasks Button -->
     <Button
         android:id="@+id/btnClearTask"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/clear_tasks"
-        android:layout_marginTop="16dp" />
+        android:text="Clear Tasks"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/buttonTextColor" />
 
     <!-- Back to Home Button -->
     <Button
         android:id="@+id/btnBackToHome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Home" />
-
+        android:text="Home"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/buttonTextColor" />
 </LinearLayout>

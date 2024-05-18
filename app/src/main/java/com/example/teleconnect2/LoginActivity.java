@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextUsername;
@@ -73,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish(); // Finish the LoginActivity
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Authentication failed."+task.getException().getMessage(),
+                            Toast.makeText(LoginActivity.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

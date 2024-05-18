@@ -140,6 +140,7 @@ public class homepage extends AppCompatActivity {
         DatabaseReference plansRef = FirebaseDatabase.getInstance().getReference("Plans");
 
         plansRef.orderByValue().equalTo(enteredPlan).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -155,6 +156,7 @@ public class homepage extends AppCompatActivity {
                 }
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle error

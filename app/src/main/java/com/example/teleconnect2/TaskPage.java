@@ -36,7 +36,6 @@ public class TaskPage extends AppCompatActivity {
     private EditText editTextTaskDescription;
     private Button btnCreateTask;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +49,9 @@ public class TaskPage extends AppCompatActivity {
         editTextTaskTitle = findViewById(R.id.editTextTaskTitle);
         editTextTaskDescription = findViewById(R.id.editTextTaskDescription);
         btnCreateTask = findViewById(R.id.btnCreateTask);
+        taskInfoTextView = findViewById(R.id.taskInfoTextView);
 
         loadTasks();
-        taskInfoTextView = findViewById(R.id.taskInfoTextView);
 
         spinnerTasks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -76,8 +75,6 @@ public class TaskPage extends AppCompatActivity {
             }
         });
 
-
-        // btn update Task On Click Listener to save the updated description
         btnUpdateTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,12 +89,9 @@ public class TaskPage extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(TaskPage.this, "Task updated successfully", Toast.LENGTH_SHORT).show();
-                                        // Update the selected task's description locally
                                         selectedTask.setDescription(updatedDescription);
-
                                         displayTaskInformation(selectedTask);
-
-                                        loadTasks(); // Reload tasks if necessary
+                                        loadTasks();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -113,7 +107,6 @@ public class TaskPage extends AppCompatActivity {
             }
         });
 
-
         btnClearTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +118,7 @@ public class TaskPage extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(TaskPage.this, "Task deleted successfully", Toast.LENGTH_SHORT).show();
-                                    loadTasks(); // Refresh tasks after deletion
+                                    loadTasks();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -137,17 +130,15 @@ public class TaskPage extends AppCompatActivity {
                 }
             }
         });
-        Button btnNavigateToTaskPage = findViewById(R.id.btnBackToHome);
 
+        Button btnNavigateToTaskPage = findViewById(R.id.btnBackToHome);
         btnNavigateToTaskPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Launch the TaskPageActivity when the button is clicked
                 startActivity(new Intent(TaskPage.this, homepage.class));
             }
         });
     }
-
 
     private void loadTasks() {
         tasksReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -180,7 +171,6 @@ public class TaskPage extends AppCompatActivity {
         String taskId = tasksReference.push().getKey();
         Task task = new Task(taskId, taskTitle, taskDescription);
 
-
         tasksReference.child(taskId).setValue(task)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -188,7 +178,7 @@ public class TaskPage extends AppCompatActivity {
                         Toast.makeText(TaskPage.this, "Task created successfully", Toast.LENGTH_SHORT).show();
                         editTextTaskTitle.setText("");
                         editTextTaskDescription.setText("");
-                        loadTasks(); // Reload the tasks after creating a new one
+                        loadTasks();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -205,10 +195,8 @@ public class TaskPage extends AppCompatActivity {
         spinnerTasks.setAdapter(adapter);
     }
 
-    // Update the displayTaskInformation method to show the description in TextView
     private void displayTaskInformation(Task selectedTask) {
-        String taskInfo = "Task ID: " + selectedTask.getTaskId() + "\nTask Title: " + selectedTask.getTitle()+ "\n Task descrption "+selectedTask.getDescription();
+        String taskInfo = "Task ID: " + selectedTask.getTaskId() + "\nTask Title: " + selectedTask.getTitle() + "\nTask Description: " + selectedTask.getDescription();
         taskInfoTextView.setText(taskInfo);
-
     }
 }

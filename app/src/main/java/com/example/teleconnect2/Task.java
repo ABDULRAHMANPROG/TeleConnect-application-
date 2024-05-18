@@ -1,15 +1,12 @@
 package com.example.teleconnect2;
 
-
-
 public class Task {
     private String taskId;
     private String title;
     private String description;
 
-    public Task() {
-
-    }
+    // Default constructor required for calls to DataSnapshot.getValue(Task.class)
+    public Task() {}
 
     public Task(String taskId, String title, String description) {
         this.taskId = taskId;
@@ -39,5 +36,10 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return title;  // Display the task title in the spinner
     }
 }

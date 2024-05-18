@@ -18,14 +18,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText editTextUsername;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
-    private Button btnSignUp;
-    private TextView loginLink;
 
     private FirebaseAuth firebaseAuth;
 
@@ -42,8 +42,8 @@ public class SignUpActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
-        btnSignUp = findViewById(R.id.btnSignUp);
-        loginLink = findViewById(R.id.loginLink);
+        Button btnSignUp = findViewById(R.id.btnSignUp);
+        TextView loginLink = findViewById(R.id.loginLink);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 finish(); // Finish the SignUpActivity
                             } else {
                                 // If sign up fails, display a message to the user.
-                                Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                Toast.makeText(SignUpActivity.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
