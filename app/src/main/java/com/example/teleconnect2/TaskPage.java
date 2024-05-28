@@ -2,7 +2,9 @@ package com.example.teleconnect2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,13 +39,22 @@ public class TaskPage extends AppCompatActivity {
     private EditText editTextTaskTitle;
     private EditText editTextTaskDescription;
     private Button btnCreateTask;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_page);
 
-        tasksReference = FirebaseDatabase.getInstance().getReference("Tasks");
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            tasksReference = FirebaseDatabase.getInstance().getReference("Tasks").child(currentUser.getUid());
+        } else {
+            // Handle case where user is not authenticated
+            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         spinnerTasks = findViewById(R.id.spinnerTasks);
         btnUpdateTask = findViewById(R.id.btnUpdateTask);
@@ -190,8 +203,34 @@ public class TaskPage extends AppCompatActivity {
     }
 
     private void displayTasks(List<Task> tasks) {
-        ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tasks);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<Task> adapter = new ArrayAdapter<Task>(this, R.layout.custom_spinner_item, tasks) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.custom_spinner_dropdown_item, parent, false);
+                }
+
+                TextView textView = (TextView) convertView;
+                textView.setText(getItem(position).getTitle());
+
+                return convertView;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.custom_spinner_item, parent, false);
+                }
+
+                TextView textView = (TextView) convertView;
+                textView.setText(getItem(position).getTitle());
+
+                return convertView;
+            }
+        };
+
         spinnerTasks.setAdapter(adapter);
     }
 

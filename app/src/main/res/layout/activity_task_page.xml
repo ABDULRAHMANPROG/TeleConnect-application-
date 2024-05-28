@@ -1,10 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/backgroundColor"
-    android:padding="16dp">
+    android:background="@drawable/telep"
+    android:padding="18dp">
 
     <TextView
         android:id="@+id/dashboardTitle"
@@ -14,7 +14,7 @@
         android:text="Employee Task Create"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/black" />
 
     <!-- Task Title Input -->
     <EditText
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:text="Create Task"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />
 
     <!-- Spinner to display tasks -->
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:background="@drawable/rounded_spinner"
+        android:background="@drawable/spinner_background_with_arrow"
         android:textColor="@color/textColor" />
 
     <TextView
@@ -82,7 +82,8 @@
         android:layout_height="wrap_content"
         android:text="Update Task"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/colorPrimary"
+
         android:textColor="@color/buttonTextColor" />
 
     <!-- Clear Tasks Button -->
@@ -92,7 +93,7 @@
         android:layout_height="wrap_content"
         android:text="Clear Tasks"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />
 
     <!-- Back to Home Button -->
@@ -102,6 +103,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Home"
-        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />
 </LinearLayout>

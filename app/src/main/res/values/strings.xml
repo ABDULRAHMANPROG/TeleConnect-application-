@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TeleConnect2</string>
+    <string name="app_name">MINICRM</string>
     <string name="logo" />
     <string name="create_task">Create Task</string>
     <string name="clear_tasks">Clear Tasks</string>
@@ -20,4 +20,14 @@
     <string name="clear_task" />
     <string name="employee_task_create">Employee Task Create</string>
     <string name="task_information">Task Information</string>
+
+
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="check_logs">Check Logs</string>
+    <string name="assign_tasks">Assign Tasks</string>
+    <string name="view_e_signature_tasks">View Tasks Requiring E-Signature</string>
+    <string name="download_task_info">Download Task Information</string>
+
+
 </resources>
+
