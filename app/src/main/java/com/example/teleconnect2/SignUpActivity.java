@@ -2,6 +2,7 @@ package com.example.teleconnect2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -28,6 +33,9 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextConfirmPassword;
 
     private FirebaseAuth firebaseAuth;
+
+    // Predefined list of admin emails
+    private static final String[] ADMIN_EMAILS = {"mec2@gmail.com", "mec1232@gmail.com"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +82,19 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign up success, update UI with the signed-in user's information
+                                // Sign up success, add user to the database
                                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                                if (user != null) {
+                                    String role = determineUserRole(email);
+                                    addUserToDatabase(user.getUid(), email, role);
+                                }
                                 Toast.makeText(SignUpActivity.this, "Sign up successful", Toast.LENGTH_SHORT).show();
                                 // Redirect to the LoginActivity
                                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                                 finish(); // Finish the SignUpActivity
                             } else {
                                 // If sign up fails, display a message to the user.
-                                Toast.makeText(SignUpActivity.this, "Authentication failed."+ Objects.requireNonNull(task.getException()).getMessage(),
+                                Toast.makeText(SignUpActivity.this, "Authentication failed." + Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -91,5 +103,29 @@ public class SignUpActivity extends AppCompatActivity {
             // Passwords do not match, show an error message
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private String determineUserRole(String email) {
+        for (String adminEmail : ADMIN_EMAILS) {
+            if (adminEmail.equals(email)) {
+                return "admin";
+            }
+        }
+        return "user";
+    }
+
+    private void addUserToDatabase(String uid, String email, String role) {
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users");
+        Map<String, Object> user = new HashMap<>();
+        user.put("email", email);
+        user.put("role", role);
+
+        dbRef.child(uid).setValue(user).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("SignUpActivity", "User added to database");
+            } else {
+                Log.e("SignUpActivity", "Failed to add user to database", task.getException());
+            }
+        });
     }
 }

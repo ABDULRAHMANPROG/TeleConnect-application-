@@ -28,6 +28,12 @@
     <string name="view_e_signature_tasks">View Tasks Requiring E-Signature</string>
     <string name="download_task_info">Download Task Information</string>
 
+    <string name="default_web_client_id">509644688060-nm7eha2ub3hlqsbuuh2itaftdljj9535.apps.googleusercontent.com</string>
+    <!-- Other strings -->
+
+
+
+
 
 </resources>
 

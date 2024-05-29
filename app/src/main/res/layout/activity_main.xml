@@ -1,6 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -8,8 +6,8 @@
 
     <ImageView
         android:id="@+id/logo_image"
-        android:layout_width="wrap_content"
-        android:layout_height="269dp"
+        android:layout_width="364dp"
+        android:layout_height="241dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:contentDescription="@string/logo"
@@ -38,6 +36,19 @@
         android:padding="12dp"
         android:autofillHints="" />
 
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/gradientStart"
+        android:padding="12dp"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        style="@style/CustomButtonStyle"/>
+
     <TextView
         android:id="@+id/textViewRegister"
         android:layout_width="wrap_content"
@@ -62,17 +73,29 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 
-    <Button
-        android:id="@+id/btnLogin"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btnGoogleSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPassword"
+        android:layout_below="@id/textViewForgotPassword"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/backgroundColor"
+        android:padding="12dp"
+        android:textAllCaps="false"
+        style="@style/CustomGoogleSignInButton" />
+
+    <Button
+        android:id="@+id/btnReportIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnGoogleSignIn"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/gradientStart"
         android:padding="12dp"
-        android:text="@string/login"
+        android:text="Report Issue"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
-
+        android:textColor="@color/white"
+        style="@style/CustomButtonStyle"/>
 
 </RelativeLayout>

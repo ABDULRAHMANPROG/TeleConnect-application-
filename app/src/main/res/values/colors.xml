@@ -8,22 +8,27 @@
     <color name="light_deepgry">#485E61</color>
     <color name="deepla_vender">#7B1FA2</color>
 
-    <color name="primaryColor">#6200EE</color>
+
     <color name="primaryColorDark">#3700B3</color>
     <color name="accentColor">#03DAC5</color>
-    <color name="backgroundColor">#F5F5F5</color>
     <color name="buttonColor">#6200EE</color>
     <color name="buttonTextColor">#FFFFFF</color>
     <color name="textColor">#333333</color>
     <color name="hintTextColor">#999999</color>
 
     <color name="colorPrimaryDark">#FF3700B3</color>
-    <color name="gradientStart">#FF6200EE</color>
-    <color name="gradientEnd">#FF3700B3</color>
+    <color name="gradientStart">#FF7F50</color>
+    <color name="gradientEnd">#FF4500</color>
 
     <color name="sectionBackgroundColor">#E0E0E0</color>
     <color name="textFieldBackgroundColor">#F5F5F5</color>
-    <color name="primaryTextColor">#FFCA28</color> <!-- Added this line -->
+    <color name="primaryTextColor2">#FFCA28</color>
+
+    <color name="primaryColor">#6200EE</color>
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="backgroundColor">#F5F5F5</color>
+
+
 
 
 
