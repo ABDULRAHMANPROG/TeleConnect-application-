@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             checkUserRole(user.getUid());
+                            Logger.log("User logged in");
                         } else {
                             Toast.makeText(LoginActivity.this, "Authentication failed." + Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
@@ -138,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     private void checkUserRole(String uid) {
         databaseReference.child(uid).child("role").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -204,6 +206,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 
     private void addUserToDatabase(String uid, String email, String role) {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("users");

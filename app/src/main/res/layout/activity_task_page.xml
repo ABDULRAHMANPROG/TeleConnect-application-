@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Employee Task Create"
+        android:text="Employee Task Management"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black" />
@@ -50,12 +50,42 @@
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />
 
-    <!-- Spinner to display tasks -->
-    <Spinner
-        android:id="@+id/spinnerTasks"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/sectionTitleAdminTasks"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="Tasks Assigned by Admin"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <!-- Spinner to display tasks assigned by admin -->
+    <Spinner
+        android:id="@+id/spinnerAdminTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp"
+        android:background="@drawable/spinner_background_with_arrow"
+        android:textColor="@color/textColor" />
+
+    <TextView
+        android:id="@+id/sectionTitleEmployeeTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tasks Created by Employee"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <!-- Spinner to display tasks created by employee -->
+    <Spinner
+        android:id="@+id/spinnerEmployeeTasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:minHeight="48dp"
         android:background="@drawable/spinner_background_with_arrow"
         android:textColor="@color/textColor" />
@@ -76,6 +106,7 @@
         android:gravity="center"
         android:textStyle="bold" />
 
+    <!-- Update Task Button -->
     <Button
         android:id="@+id/btnUpdateTask"
         android:layout_width="match_parent"
@@ -83,7 +114,6 @@
         android:text="Update Task"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/colorPrimary"
-
         android:textColor="@color/buttonTextColor" />
 
     <!-- Clear Tasks Button -->

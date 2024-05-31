@@ -70,8 +70,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        // I was think to use the user name but i change my mind and I don't Remove it for the design purpose.
-        String username = editTextUsername.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String confirmPassword = editTextConfirmPassword.getText().toString().trim();
@@ -82,28 +80,23 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign up success, add user to the database
                                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                                if (user != null) {
-                                    String role = determineUserRole(email);
-                                    addUserToDatabase(user.getUid(), email, role);
-                                }
+                                addUserToDatabase(user.getUid(), user.getEmail(), "user");
                                 Toast.makeText(SignUpActivity.this, "Sign up successful", Toast.LENGTH_SHORT).show();
-                                // Redirect to the LoginActivity
+                                Logger.log("User registered");
                                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                                finish(); // Finish the SignUpActivity
+                                finish();
                             } else {
-                                // If sign up fails, display a message to the user.
                                 Toast.makeText(SignUpActivity.this, "Authentication failed." + Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         } else {
-            // Passwords do not match, show an error message
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private String determineUserRole(String email) {
         for (String adminEmail : ADMIN_EMAILS) {
