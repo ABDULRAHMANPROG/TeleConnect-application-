@@ -29,7 +29,7 @@ import java.util.List;
 public class TaskPage extends AppCompatActivity {
 
     private Spinner spinnerAdminTasks, spinnerEmployeeTasks;
-    private Button btnUpdateTask, btnClearTask, btnCreateTask;
+    private Button btnUpdateTask, btnClearTask, btnCreateTask, btnCompleteTask;
     private TextView taskInfoTextView;
     private EditText editTextTaskTitle, editTextTaskDescription;
     private DatabaseReference userTasksReference, adminTasksReference;
@@ -49,6 +49,7 @@ public class TaskPage extends AppCompatActivity {
         btnUpdateTask = findViewById(R.id.btnUpdateTask);
         btnClearTask = findViewById(R.id.btnClearTask);
         btnCreateTask = findViewById(R.id.btnCreateTask);
+        btnCompleteTask = findViewById(R.id.btnCompleteTask);
         editTextTaskTitle = findViewById(R.id.editTextTaskTitle);
         editTextTaskDescription = findViewById(R.id.editTextTaskDescription);
         taskInfoTextView = findViewById(R.id.taskInfoTextView);
@@ -61,12 +62,14 @@ public class TaskPage extends AppCompatActivity {
                 Task selectedTask = (Task) spinnerAdminTasks.getSelectedItem();
                 if (selectedTask != null) {
                     displayTaskInformation(selectedTask);
+                } else {
+                    resetTaskView();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // No task selected
+                resetTaskView();
             }
         });
 
@@ -76,12 +79,14 @@ public class TaskPage extends AppCompatActivity {
                 Task selectedTask = (Task) spinnerEmployeeTasks.getSelectedItem();
                 if (selectedTask != null) {
                     displayTaskInformation(selectedTask);
+                } else {
+                    resetTaskView();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // No task selected
+                resetTaskView();
             }
         });
 
@@ -97,28 +102,26 @@ public class TaskPage extends AppCompatActivity {
             public void onClick(View v) {
                 Task selectedTask = (Task) spinnerEmployeeTasks.getSelectedItem();
                 if (selectedTask != null) {
-                    String taskId = selectedTask.getTaskId();
-                    String updatedDescription = editTextTaskDescription.getText().toString().trim();
+                    updateTask(selectedTask);
+                } else {
+                    selectedTask = (Task) spinnerAdminTasks.getSelectedItem();
+                    if (selectedTask != null) {
+                        updateTask(selectedTask);
+                    }
+                }
+            }
+        });
 
-                    if (!updatedDescription.isEmpty()) {
-                        userTasksReference.child(taskId).child("description").setValue(updatedDescription)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(TaskPage.this, "Task updated successfully", Toast.LENGTH_SHORT).show();
-                                        selectedTask.setDescription(updatedDescription);
-                                        displayTaskInformation(selectedTask);
-                                        loadTasks();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(TaskPage.this, "Failed to update task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    } else {
-                        Toast.makeText(TaskPage.this, "Please enter a description", Toast.LENGTH_SHORT).show();
+        btnCompleteTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Task selectedTask = (Task) spinnerEmployeeTasks.getSelectedItem();
+                if (selectedTask != null) {
+                    completeTask(selectedTask);
+                } else {
+                    selectedTask = (Task) spinnerAdminTasks.getSelectedItem();
+                    if (selectedTask != null) {
+                        completeTask(selectedTask);
                     }
                 }
             }
@@ -129,21 +132,12 @@ public class TaskPage extends AppCompatActivity {
             public void onClick(View v) {
                 Task selectedTask = (Task) spinnerEmployeeTasks.getSelectedItem();
                 if (selectedTask != null) {
-                    String taskId = selectedTask.getTaskId();
-                    userTasksReference.child(taskId).removeValue()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(TaskPage.this, "Task deleted successfully", Toast.LENGTH_SHORT).show();
-                                    loadTasks();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(TaskPage.this, "Failed to delete task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                    clearTask(selectedTask);
+                } else {
+                    selectedTask = (Task) spinnerAdminTasks.getSelectedItem();
+                    if (selectedTask != null) {
+                        clearTask(selectedTask);
+                    }
                 }
             }
         });
@@ -164,9 +158,13 @@ public class TaskPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Task> adminTasks = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Task task = snapshot.getValue(Task.class);
-                    if (task != null && task.getAssignedTo() != null && task.getAssignedTo().equals(currentUserId)) {
-                        adminTasks.add(task);
+                    try {
+                        Task task = snapshot.getValue(Task.class);
+                        if (task != null && task.getAssignedTo() != null && task.getAssignedTo().equals(currentUserId)) {
+                            adminTasks.add(task);
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(TaskPage.this, "Error loading admin task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 displayAdminTasks(adminTasks);
@@ -184,9 +182,13 @@ public class TaskPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Task> employeeTasks = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Task task = snapshot.getValue(Task.class);
-                    if (task != null) {
-                        employeeTasks.add(task);
+                    try {
+                        Task task = snapshot.getValue(Task.class);
+                        if (task != null) {
+                            employeeTasks.add(task);
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(TaskPage.this, "Error loading employee task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 displayEmployeeTasks(employeeTasks);
@@ -217,8 +219,7 @@ public class TaskPage extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(TaskPage.this, "Task created successfully", Toast.LENGTH_SHORT).show();
-                        editTextTaskTitle.setText("");
-                        editTextTaskDescription.setText("");
+                        resetTaskView();
                         loadTasks();
                     }
                 })
@@ -226,6 +227,73 @@ public class TaskPage extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(TaskPage.this, "Failed to create task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void updateTask(Task selectedTask) {
+        String updatedDescription = editTextTaskDescription.getText().toString().trim();
+
+        if (!updatedDescription.isEmpty()) {
+            DatabaseReference taskRef =  userTasksReference.child(selectedTask.getTaskId());
+            taskRef.child("description").setValue(updatedDescription)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(TaskPage.this, "Task updated successfully", Toast.LENGTH_SHORT).show();
+                            selectedTask.setDescription(updatedDescription);
+                            resetTaskView();
+                            loadTasks();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(TaskPage.this, "Failed to update task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(TaskPage.this, "Please enter a description", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void completeTask(Task selectedTask) {
+        adminTasksReference.child(selectedTask.getTaskId()).child("status").setValue("complete")
+
+
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(TaskPage.this, "Task marked as complete", Toast.LENGTH_SHORT).show();
+                        selectedTask.setStatus("complete");
+                        resetTaskView();
+                        loadTasks();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(TaskPage.this, "Failed to update task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        Logger.log("user completed a task");
+    }
+
+    private void clearTask(Task selectedTask) {
+        DatabaseReference taskRef =  userTasksReference.child(selectedTask.getTaskId());
+        taskRef.removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(TaskPage.this, "Task deleted successfully", Toast.LENGTH_SHORT).show();
+                        resetTaskView();
+                        loadTasks();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(TaskPage.this, "Failed to delete task: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -244,6 +312,24 @@ public class TaskPage extends AppCompatActivity {
 
     private void displayTaskInformation(Task selectedTask) {
         String taskInfo = "Task ID: " + selectedTask.getTaskId() + "\nTask Title: " + selectedTask.getTitle() + "\nTask Description: " + selectedTask.getDescription();
+        if (selectedTask.isESignatureRequired()) {
+            taskInfo += "\nE-Signature Required: Yes";
+        } else {
+            taskInfo += "\nE-Signature Required: No";
+        }
+        taskInfo += "\nStatus: " + selectedTask.getStatus();
         taskInfoTextView.setText(taskInfo);
+    }
+
+    private void resetTaskView() {
+        editTextTaskTitle.setText("");
+        editTextTaskDescription.setText("");
+        if (spinnerAdminTasks.getAdapter() != null && spinnerAdminTasks.getAdapter().getCount() > 0) {
+            spinnerAdminTasks.setSelection(0);
+        }
+        if (spinnerEmployeeTasks.getAdapter() != null && spinnerEmployeeTasks.getAdapter().getCount() > 0) {
+            spinnerEmployeeTasks.setSelection(0);
+        }
+        taskInfoTextView.setText("");
     }
 }

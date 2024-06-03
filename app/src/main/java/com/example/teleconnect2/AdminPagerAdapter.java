@@ -20,7 +20,7 @@ public class AdminPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new AssignTaskFragment();
             case 2:
-                return new ESignatureTasksFragment();
+                return new ViewAssignedTasksFragment();
             case 3:
                 return new DownloadTaskInfoFragment();
             default:

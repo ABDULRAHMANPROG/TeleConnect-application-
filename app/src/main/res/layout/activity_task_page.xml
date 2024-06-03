@@ -1,10 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/telep"
-    android:padding="18dp">
+    android:padding="17dp">
 
     <TextView
         android:id="@+id/dashboardTitle"
@@ -116,6 +116,16 @@
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />
 
+    <!-- Complete Task Button -->
+    <Button
+        android:id="@+id/btnCompleteTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complete Task"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/buttonTextColor" />
+
     <!-- Clear Tasks Button -->
     <Button
         android:id="@+id/btnClearTask"
@@ -132,7 +142,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Home"
         android:backgroundTint="@color/colorPrimary"
+        android:minHeight="48dp"
+        android:text="Home"
         android:textColor="@color/buttonTextColor" />
 </LinearLayout>

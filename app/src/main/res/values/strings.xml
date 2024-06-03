@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MINICRM</string>
+    <string name="app_name">MINI CRM</string>
     <string name="logo" />
     <string name="create_task">Create Task</string>
     <string name="clear_tasks">Clear Tasks</string>
@@ -29,6 +29,7 @@
     <string name="download_task_info">Download Task Information</string>
 
     <string name="default_web_client_id">509644688060-nm7eha2ub3hlqsbuuh2itaftdljj9535.apps.googleusercontent.com</string>
+    <string name="already_have_an_account_log_in">Already have an account? Log in</string>
     <!-- Other strings -->
 
 

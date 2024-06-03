@@ -1,13 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="17dp"
+    android:orientation="vertical"
     android:background="@color/black">
 
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="364dp"
-        android:layout_height="241dp"
+        android:layout_height="251dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:contentDescription="@string/logo"

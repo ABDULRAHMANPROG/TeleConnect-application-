@@ -17,6 +17,7 @@ public class Task {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
+        this.status = "pending";
     }
 
     // Constructor for tasks assigned by admins
@@ -72,11 +73,11 @@ public class Task {
         this.assignedTo = assignedTo;
     }
 
-    public boolean iseSignatureRequired() {
+    public boolean isESignatureRequired() {
         return eSignatureRequired;
     }
 
-    public void seteSignatureRequired(boolean eSignatureRequired) {
+    public void setESignatureRequired(boolean eSignatureRequired) {
         this.eSignatureRequired = eSignatureRequired;
     }
 
@@ -90,10 +91,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return title;  // Display the task title in the spinner
-    }
-
-    public Object getCreatedBy() {
-        return null;
+        return title + " - Status: " + status;
     }
 }

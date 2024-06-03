@@ -1,7 +1,7 @@
 package com.example.teleconnect2;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -37,8 +37,8 @@ public class AdminActivity extends AppCompatActivity {
                             tab.setContentDescription("Assign Tasks Tab");
                             break;
                         case 2:
-                            tab.setText("E-Signature Tasks");
-                            tab.setContentDescription("E-Signature Tasks Tab");
+                            tab.setText("Admin View Tasks");
+                            tab.setContentDescription("View Tasks Tab");
                             break;
                         case 3:
                             tab.setText("Download Task Info");
