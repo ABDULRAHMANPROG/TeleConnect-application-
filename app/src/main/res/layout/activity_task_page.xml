@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/telep"
     android:padding="17dp">
 
     <TextView
@@ -111,7 +112,7 @@
         android:id="@+id/btnUpdateTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Task"
+        android:text="Update Task Employee"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />
@@ -131,7 +132,7 @@
         android:id="@+id/btnClearTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clear Tasks"
+        android:text="Clear Tasks Employee"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/buttonTextColor" />

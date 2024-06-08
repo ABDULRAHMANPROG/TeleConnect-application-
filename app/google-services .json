@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "509644688060",
+    "firebase_url": "https://teleconncet-default-rtdb.firebaseio.com",
+    "project_id": "teleconncet",
+    "storage_bucket": "teleconncet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509644688060:android:07663190da33793a995eb9",
+        "android_client_info": {
+          "package_name": "com.example.teleconnect2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509644688060-inqfla1ntua9243b3th2tpe9qvu20ktl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.teleconnect2",
+            "certificate_hash": "3b9aa0d8a6b4dc16c2bbad9c099ef744380fc35c"
+          }
+        },
+        {
+          "client_id": "509644688060-nm7eha2ub3hlqsbuuh2itaftdljj9535.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPT1JYp-pQb-ljr02hOlP1yTHnqTlnyXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509644688060-nm7eha2ub3hlqsbuuh2itaftdljj9535.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

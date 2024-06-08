@@ -37,10 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/dashboardTitle"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:hint="@string/search"
         android:padding="12dp"
-        android:textColorHint="@color/hintTextColor" />
+        android:textColorHint="@color/hintTextColor"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <LinearLayout
         android:id="@+id/userInfoSection"
@@ -71,24 +72,24 @@
             android:textColor="@color/black" />
     </LinearLayout>
 
-    <!-- Calculate Plan Input -->
+
     <EditText
         android:id="@+id/editTextCalculatePlan"
         style="@style/EditTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userInfoSection"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="70dp"
         android:hint="@string/calculate_plan_input"
-        android:padding="12dp" />
+        android:padding="12dp"
+        tools:ignore="VisualLintTextFieldSize" />
 
-    <!-- Calculate Plan Section -->
     <LinearLayout
         android:id="@+id/calculatePlanSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextCalculatePlan"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:background="@color/sectionBackgroundColor"
         android:orientation="vertical"
         android:padding="16dp">
@@ -118,12 +119,11 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Plans Offers"
             android:layout_gravity="center"
+            android:hint="Plans Offers"
             android:textColor="@color/black" />
     </LinearLayout>
 
-    <!-- Make Offer Button -->
     <Button
         android:id="@+id/btnMakeOffer"
         style="@style/ButtonStyle"
@@ -131,22 +131,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/calculatePlanSection"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="30dp"
         android:text="@string/make_offer"
         android:textColor="@color/buttonTextColor" />
 
     <!-- Navigate to Task Page Button -->
+
+    <!-- Search Button -->
     <Button
         android:id="@+id/btnNavigateToTaskPage"
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnMakeOffer"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="Go to Task Page"
-        android:textColor="@color/buttonTextColor" />
+        android:textColor="@color/buttonTextColor"
+        tools:ignore="VisualLintButtonSize" />
 
-    <!-- Search Button -->
     <Button
         android:id="@+id/btnSearch"
         style="@style/ButtonStyle"
@@ -154,7 +156,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/userInfoSection"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="148dp"
         android:text="Search"
         android:textColor="@color/buttonTextColor" />
 </RelativeLayout>
